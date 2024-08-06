@@ -16,10 +16,10 @@ const theme = createTheme({
 
 export default function RootLayout({ children }) {
   return (
-    <MantineProvider theme={theme}>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    </MantineProvider>
+    // <MantineProvider theme={theme}>
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
+    </html>
+    // </MantineProvider>
   );
 }
