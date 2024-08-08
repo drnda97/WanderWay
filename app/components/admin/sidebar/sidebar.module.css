@@ -1,0 +1,49 @@
+.sidebar__wrapper {
+    width: 112px;
+    height: 100vh;
+    border-radius: 0 16px 16px 0;
+    background: rgba(239, 239, 239, 0.12);
+    backdrop-filter: blur(50px);
+    padding: 30px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.logo {
+    width: 100%;
+}
+.icons__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 3rem 0;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    color: #ffffff;
+    padding: 6px;
+}
+.icon:hover {
+    color: #171717;
+    background: #EFEFEF;
+    display: inline-flex;
+    padding: 9px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+.logout {
+    display: flex;
+    width: 56px;
+    height: 42px;
+    padding: 8px 0;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #171717;
+    position: absolute;
+    bottom: 30px;
+    cursor: pointer;
+}
