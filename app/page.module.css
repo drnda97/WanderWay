@@ -1,56 +1,34 @@
 .main {
   width: 100%;
   height: 100vh;
-  background-color: #000;
   position: relative;
+  overflow: hidden;
 }
-.background__slider {
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 3rem;
+  max-width: 1440px;
+  margin: 0 auto;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
   width: 100%;
-  height: 100vh;
-  background-image: url("./assets/images/homepage/image 6.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  transition: all .2s linear;
-  animation: slide 20s infinite;
-}
-.main__content__wrapper {
-  background-color: rgba(0,0,0,0.6);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  z-index: 22;
-  position: relative;
+  z-index: 99999999;
 }
 .logo {
-  position: absolute;
-  top: 80px;
-  left: 80px;
+  max-width: 6rem;
 }
-.page__title {
-  font-size: 3.5rem;
-}
-.page__subtitle {
-  font-size: 1.5rem;
-  text-align: center;
-}
-.text__wrapper {
-  width: 50%;
-  margin: 0 auto;
+.nav {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
+  justify-content: center;
 }
-.page__desc {
-  text-align: center;
+.links__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
 }
 .form {
   width: 100%;
@@ -64,6 +42,11 @@
   align-items: center;
   justify-content: center;
   margin-top: 64px;
+}
+.form__controll {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .input {
   width: 100%;
@@ -83,7 +66,7 @@
 }
 .green__button {
   padding: 12px 24px;
-  background: #2c5f2d;
+  background: #157759;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -101,6 +84,7 @@
 .checkbox {
   width: 100%;
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 .input__checkbox {
@@ -109,60 +93,5 @@
   border: 1px solid #ffffff;
   background-color: #ffffff;
   cursor: pointer;
-}
-@keyframes slide {
-  0%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/image 6.png");
-  }
-
-  20%{
-    opacity: 1;
-    background-image: url("./assets/images/homepage/image 6.png");
-  }
-  25%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/image 6.png");
-  }
-  25.1%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/image 6 (1).png");
-  }
-
-  35%{
-    opacity: 1;
-    background-image: url("./assets/images/homepage/image 6 (1).png");
-  }
-  50%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/image 6 (1).png");
-  }
-  50.01%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/image 6 (2).png");
-  }
-
-  70%{
-    opacity: 1;
-    background-image: url("./assets/images/homepage/image 6 (2).png");
-  }
-  75%{
-    opacity: 0;
-    background-color: yellow;
-    background-image: url("./assets/images/homepage/image 6 (2).png");
-  }
-
-  75.01%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/rtanj slika.png");
-  }
-
-  95%{
-    opacity: 1;
-    background-image: url("./assets/images/homepage/rtanj slika.png");
-  }
-  100%{
-    opacity: 0;
-    background-image: url("./assets/images/homepage/rtanj slika.png");
-  }
+  margin-top: 20px;
 }
