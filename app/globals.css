@@ -95,6 +95,22 @@ a {
   text-decoration: none;
 }
 
+.green__button:hover {
+  background-color: #ffffff;
+  color: #2c5f2d;
+  font-weight: 800;
+}
+.green__button {
+  padding: 12px 24px;
+  background: #2c5f2d;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all .3s linear;
+  margin-top: 24px;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

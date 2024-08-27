@@ -1,35 +1,148 @@
 "use client";
-import React from "react";
-import styles from "@/app/admin/users/users.module.css";
+import React, { useState } from "react";
+import styles from "@/app/admin/district/district.module.css";
 import Sidebar from "@/app/components/admin/sidebar/Sidebar";
-import { Table } from "@mantine/core";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { Box } from "@mui/material";
+import { Formik } from "formik";
 
-const elements = [
-  { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
-  { position: 7, mass: 14.007, symbol: "N", name: "Nitrogen" },
-  { position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
-  { position: 56, mass: 137.33, symbol: "Ba", name: "Barium" },
-  { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
-];
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const DistrictPage = () => {
-  const tableData = {
-    caption: "Some elements from periodic table",
-    head: ["Element position", "Atomic mass", "Symbol", "Element name"],
-    body: [
-      [6, 12.011, "C", "Carbon"],
-      [7, 14.007, "N", "Nitrogen"],
-      [39, 88.906, "Y", "Yttrium"],
-      [56, 137.33, "Ba", "Barium"],
-      [58, 140.12, "Ce", "Cerium"],
-    ],
-  };
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  function createData(name, calories, fat, carbs, protein) {
+    return { name, calories, fat, carbs, protein };
+  }
+
+  const rows = [
+    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+    createData("Eclair", 262, 16.0, 24, 6.0),
+    createData("Cupcake", 305, 3.7, 67, 4.3),
+    createData("Gingerbread", 356, 16.0, 49, 3.9),
+  ];
+
   return (
     <>
       <Sidebar />
       <main className={styles.page__wrapper}>
-        {/*<Table data={tableData} />;*/}
+        <div className={styles.title__wrapper}>
+          <h1>District</h1>
+          <button className={"green__button"} onClick={handleOpen}>
+            Create New
+          </button>
+        </div>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Dessert (100g serving)</TableCell>
+                <TableCell align="right">Calories</TableCell>
+                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.calories}</TableCell>
+                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">{row.carbs}</TableCell>
+                  <TableCell align="right">{row.protein}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </main>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Create New District
+          </Typography>
+          <div className={styles.form}>
+            <Formik
+              initialValues={{ name: "" }}
+              validate={(values) => {
+                const errors = {};
+                if (!values.name) {
+                  errors.name = "Name is Required";
+                }
+                return errors;
+              }}
+              onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  setSubmitting(false);
+                }, 400);
+              }}
+            >
+              {({
+                values,
+                errors,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+                /* and other goodies */
+              }) => (
+                <form onSubmit={handleSubmit} className={styles.form__wrapper}>
+                  <input
+                    className={`${styles.input} ${errors.name ? styles.input__error : ""}`}
+                    type="text"
+                    name="name"
+                    placeholder={"Enter District Name"}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                  />
+                  {errors.name && <p className={styles.error}>{errors.name}</p>}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={"green__button"}
+                  >
+                    Save
+                  </button>
+                </form>
+              )}
+            </Formik>
+          </div>
+        </Box>
+      </Modal>
     </>
   );
 };

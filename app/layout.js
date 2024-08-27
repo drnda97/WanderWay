@@ -1,25 +1,31 @@
+"use client";
 import { Inter } from "next/font/google";
-import "@mantine/core/styles.css";
 import "./globals.css";
-import { createTheme, MantineProvider } from "@mantine/core";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Wander Way",
-  description: "Hiking App",
-};
+// export const metadata = {
+//   title: "Wander Way",
+//   description: "Hiking App",
+// };
 
-const theme = createTheme({
-  /** Put your mantine theme override here */
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
 });
 
 export default function RootLayout({ children }) {
   return (
-    // <MantineProvider theme={theme}>
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-    // </MantineProvider>
+    <ThemeProvider theme={darkTheme}>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </ThemeProvider>
   );
 }

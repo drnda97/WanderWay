@@ -2,11 +2,12 @@ import React from "react";
 import styles from "@/app/components/admin/sidebar/sidebar.module.css";
 import logo from "@/app/assets/images/homepage/logo.png";
 import Link from "next/link";
-import {
-  AdminAppointmentsIcon,
-  AdminLogoutIcon,
-  AdminUsersIcon,
-} from "@/app/plugins/icons";
+import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
+import RouteOutlinedIcon from "@mui/icons-material/RouteOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import BookOnlineOutlinedIcon from "@mui/icons-material/BookOnlineOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 const Sidebar = () => {
   return (
@@ -16,23 +17,23 @@ const Sidebar = () => {
       </Link>
       <div className={styles.icons__wrapper}>
         <Link href={"/admin/users"} className={styles.icon}>
-          <AdminUsersIcon />
+          <GroupOutlinedIcon />
         </Link>
         <Link href={"/admin/appointments"} className={styles.icon}>
-          <AdminAppointmentsIcon />
+          <BookOnlineOutlinedIcon />
         </Link>
         <Link href={"/admin/district"} className={styles.icon}>
-          <AdminAppointmentsIcon />
+          <MapOutlinedIcon />
         </Link>
         <Link href={"/admin/mountains"} className={styles.icon}>
-          <AdminUsersIcon />
+          <LandscapeOutlinedIcon />
         </Link>
         <Link href={"/admin/routes"} className={styles.icon}>
-          <AdminUsersIcon />
+          <RouteOutlinedIcon />
         </Link>
       </div>
       <div className={styles.logout}>
-        <AdminLogoutIcon />
+        <LogoutOutlinedIcon />
       </div>
     </aside>
   );

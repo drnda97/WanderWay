@@ -1,3 +1,39 @@
 .page__wrapper {
     margin-left: 150px;
+    padding: 3rem 3rem 0 0;
+}
+.title__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+.form__wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.input {
+    width: 100%;
+    padding: .75rem;
+    border-radius: .75rem;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+.input::placeholder {
+    color: #ffffff;
+}
+.input__error {
+    border-color: red;
+}
+.error {
+    text-align: left;
+    width: 100%;
+    color: red;
 }
