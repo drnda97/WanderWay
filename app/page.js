@@ -20,7 +20,6 @@ import img_17 from "./assets/images/img/mountain_1.png";
 import img_18 from "./assets/images/img/sun_rays.png";
 import img_19 from "./assets/images/img/black_shadow.png";
 import img_20 from "./assets/images/img/fog_1.png";
-import "./assets/js/gsap.min";
 import { Field, Formik } from "formik";
 
 export default function Home() {
@@ -36,12 +35,12 @@ export default function Home() {
       parallax_el.forEach((value) => {
         let speedx = value.dataset.speedx;
         let speedy = value.dataset.speedt;
-        let isInLeft =
-          parseFloat(getComputedStyle(value).left) < window.innerWidth / 2
-            ? 1
-            : -1;
-        let zValue =
-          e.clientX - parseFloat(getComputedStyle(value).left) * isInLeft * 0.1;
+        // let isInLeft =
+        //   parseFloat(getComputedStyle(value).left) < window.innerWidth / 2
+        //     ? 1
+        //     : -1;
+        // let zValue =
+        //   e.clientX - parseFloat(getComputedStyle(value).left) * isInLeft * 0.1;
         value.style.transform = `translateX(calc(-50% + ${-xValue * speedx}px)) translateY(calc(-50% + ${-yValue * speedy}px)) perspective(2300px)`;
       });
     });
