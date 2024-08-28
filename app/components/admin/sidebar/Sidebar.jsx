@@ -8,6 +8,7 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import BookOnlineOutlinedIcon from "@mui/icons-material/BookOnlineOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 const Sidebar = () => {
   return (
@@ -30,6 +31,9 @@ const Sidebar = () => {
         </Link>
         <Link href={"/admin/routes"} className={styles.icon}>
           <RouteOutlinedIcon />
+        </Link>
+        <Link href={"/admin/newsletter"} className={styles.icon}>
+          <EmailOutlinedIcon />
         </Link>
       </div>
       <div className={styles.logout}>

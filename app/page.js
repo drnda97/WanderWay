@@ -1,7 +1,11 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import "./assets/css/parallax.css";
-import React, { useEffect } from "react";
+import Alert from "@mui/material/Alert";
+import { Field, Formik } from "formik";
+import axios from "axios";
+
 import logo from "./assets/images/homepage/logo.png";
 import img_1 from "./assets/images/img/background.png";
 import img_2 from "./assets/images/img/fog_7.png";
@@ -20,9 +24,11 @@ import img_17 from "./assets/images/img/mountain_1.png";
 import img_18 from "./assets/images/img/sun_rays.png";
 import img_19 from "./assets/images/img/black_shadow.png";
 import img_20 from "./assets/images/img/fog_1.png";
-import { Field, Formik } from "formik";
 
 export default function Home() {
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     const parallax_el = document.querySelectorAll(".parallax");
     let xValue = 0,
@@ -46,8 +52,40 @@ export default function Home() {
     });
   }, []);
 
+  const sendData = async (setSubmitting, values, resetForm) => {
+    const params = {
+      email: values.email,
+    };
+
+    await axios
+      .post("http://localhost:5000/api/newsletter/save", params, {
+        apiKey:
+          "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
+      })
+      .then((res) => {
+        setError(false);
+        setMessage(res.data.message);
+        setTimeout(() => {
+          setMessage("");
+        }, 5000);
+        resetForm();
+        setSubmitting(false);
+      })
+      .catch((err) => {
+        setError(true);
+        setMessage(err.response.data.message);
+        setTimeout(() => {
+          setMessage("");
+        }, 5000);
+        setSubmitting(false);
+      });
+  };
+
   return (
     <main className={styles.main}>
+      {message ? (
+        <Alert severity={error ? "error" : "success"}>{message}</Alert>
+      ) : null}
       <div className="overlay"></div>
       <header className={styles.header}>
         <img src={logo.src} alt="Logo" className={styles.logo} />
@@ -110,7 +148,7 @@ export default function Home() {
           <h1>Wander Way</h1>
           <div className={styles.form}>
             <Formik
-              initialValues={{ email: "" }}
+              initialValues={{ email: "", agree: false }}
               validate={(values) => {
                 const errors = {};
                 if (!values.email) {
@@ -120,32 +158,30 @@ export default function Home() {
                 ) {
                   errors.email = "Invalid email address";
                 }
+                if (!values.agree) {
+                  errors.agree = "Required";
+                }
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  setSubmitting(false);
-                }, 400);
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                sendData(setSubmitting, values, resetForm);
               }}
             >
               {({
                 values,
                 errors,
                 handleChange,
-                handleBlur,
                 handleSubmit,
                 isSubmitting,
                 /* and other goodies */
               }) => (
                 <form onSubmit={handleSubmit} className={styles.form__wrapper}>
                   <input
-                    className={`${styles.input} ${errors.email ? styles.input__error : ""}`}
+                    className={`${styles.input} ${errors.email || error ? styles.input__error : ""}`}
                     type="email"
                     name="email"
                     placeholder={"Unesi svoj mail"}
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     value={values.email}
                   />
                   <label className={styles.checkbox}>

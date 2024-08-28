@@ -116,3 +116,11 @@ a {
     color-scheme: dark;
   }
 }
+/*==========================MUI=======================*/
+.MuiAlert-root {
+  max-width: 300px !important;
+  position: absolute;
+  top: 10% !important;
+  right: 5% !important;
+  z-index: 10021;
+}
