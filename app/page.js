@@ -24,6 +24,7 @@ import img_17 from "./assets/images/img/mountain_1.png";
 import img_18 from "./assets/images/img/sun_rays.png";
 import img_19 from "./assets/images/img/black_shadow.png";
 import img_20 from "./assets/images/img/fog_1.png";
+import Repository, { apiUrl } from "@/app/repository/Repository";
 
 export default function Home() {
   const [message, setMessage] = useState("");
@@ -57,11 +58,10 @@ export default function Home() {
       email: values.email,
     };
 
-    await axios
-      .post("http://localhost:5000/api/newsletter/save", params, {
-        apiKey:
-          "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
-      })
+    await Repository.post(`${apiUrl}/newsletter/save`, params, {
+      apiKey:
+        "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
+    })
       .then((res) => {
         setError(false);
         setMessage(res.data.message);

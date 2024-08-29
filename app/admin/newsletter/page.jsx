@@ -12,6 +12,7 @@ import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Alert from "@mui/material/Alert";
+import Repository, { apiUrl } from "@/app/repository/Repository";
 
 const NewsletterPage = () => {
   const [data, setData] = useState([]);
@@ -23,11 +24,10 @@ const NewsletterPage = () => {
   }, []);
 
   const getData = async () => {
-    await axios
-      .get("http://localhost:5000/api/newsletter/", {
-        apiKey:
-          "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
-      })
+    await Repository.get(`${apiUrl}/newsletter`, {
+      Authorization:
+        "Bearer rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
+    })
       .then((res) => {
         setData(res.data.data);
       })
@@ -37,11 +37,10 @@ const NewsletterPage = () => {
   };
 
   const deleteUsersNewsletter = async (id) => {
-    await axios
-      .delete(`http://localhost:5000/api/newsletter/${id}`, {
-        apiKey:
-          "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
-      })
+    await Repository.delete(`${apiUrl}/newsletter/${id}`, {
+      apiKey:
+        "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
+    })
       .then((res) => {
         setError(false);
         setMessage(res.data.message);
