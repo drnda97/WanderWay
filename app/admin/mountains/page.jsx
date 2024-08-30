@@ -277,8 +277,10 @@ const MountainsPage = () => {
                         setRouteFromSelect(setFieldValue, e.target.value)
                       }
                     >
-                      {routes.map((route) => (
-                        <MenuItem value={route}>{route.name}</MenuItem>
+                      {routes.map((route, index) => (
+                        <MenuItem value={route} key={index}>
+                          {route.name}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
