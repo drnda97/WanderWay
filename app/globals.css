@@ -124,3 +124,6 @@ a {
   right: 5% !important;
   z-index: 10021;
 }
+#custom-select {
+  padding: 0 !important;
+}

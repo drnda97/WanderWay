@@ -37,3 +37,18 @@
     width: 100%;
     color: red;
 }
+.form {
+    width: 100%;
+}
+.icon {
+    color: #ffffff;
+    padding: 6px;
+    display: inline-flex;
+    cursor: pointer;
+}
+.icon:hover {
+    color: #171717;
+    background: #EFEFEF;
+    padding: 6px;
+    border-radius: 12px;
+}

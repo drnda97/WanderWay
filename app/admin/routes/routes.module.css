@@ -37,6 +37,9 @@
     width: 100%;
     color: red;
 }
+.form {
+    width: 100%;
+}
 .icon {
     color: #ffffff;
     padding: 6px;

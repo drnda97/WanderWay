@@ -7,8 +7,6 @@ const token = cookies.get("token");
 const domain = process.env.NEXT_PUBLIC_API_URL;
 export const apiUrl = `${domain}/api`;
 
-console.log(domain);
-
 const customHeaders = {
   Accept: "application/json",
   Authorization: "Basic Y2hlY2tlcjpjaDNjazNyMjAyMg==",

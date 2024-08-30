@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import styles from "@/app/admin/routes/routes.module.css";
 import Sidebar from "@/app/components/admin/sidebar/Sidebar";
 import TableContainer from "@mui/material/TableContainer";
@@ -37,25 +36,22 @@ const NewsletterPage = () => {
   };
 
   const deleteUsersNewsletter = async (id) => {
-    await Repository.delete(`${apiUrl}/newsletter/${id}`, {
-      apiKey:
-        "rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
-    })
+    await Repository.delete(`${apiUrl}/newsletter/${id}`)
       .then((res) => {
-        setError(false);
-        setMessage(res.data.message);
         getData();
-        setTimeout(() => {
-          setMessage("");
-        }, 5000);
+        showMessage(res.data.message, false);
       })
       .catch((err) => {
-        setError(true);
-        setMessage(err.response.data.message);
-        setTimeout(() => {
-          setMessage("");
-        }, 5000);
+        showMessage(err.response.data.message, true);
       });
+  };
+
+  const showMessage = (message, error) => {
+    setError(error);
+    setMessage(message);
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   };
 
   return (
