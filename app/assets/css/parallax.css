@@ -1,18 +1,18 @@
 .bg-img {
     position: absolute;
-    width: 2800px;
-    top: calc(60% - 390px);
+    width: 140%;
+    top: 50%;
     left: calc(50% + 10px);
     transform: translate(-50%, -50%);
     z-index: 1;
 }
 .fog-7 {
     position: absolute;
-    width: 1900px;
+    width: 120%;
     z-index: 2;
-    top: calc(50% - 100px);
-    left: calc(50% + 300px);
-    transform: translate(-50%, -50%);
+    top: calc(50% - 220px);
+    left: 50%;
+    transform: translate(-50%, -100%);
 }
 .mountain-10 {
     position: absolute;
@@ -83,16 +83,16 @@
 .mountain-6 {
     position: absolute;
     z-index: 10;
-    top: calc(50% + 60px);
-    left: calc(50% + 590px);
-    width: 408px;
+    top: calc(50% - 160px);
+    left: 50%;
+    width: 120%;
 }
 .fog-4 {
     position: absolute;
-    z-index: 11;
-    top: calc(50% + 223px);
-    left: calc(50% - 60px);
-    width: 590px;
+    z-index: 10;
+    top: calc(50% - 180px);
+    left: 50%;
+    width: 120%;
 }
 .mountain-5 {
     position: absolute;

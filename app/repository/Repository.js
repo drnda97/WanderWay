@@ -13,12 +13,13 @@ const customHeaders = {
 };
 
 if (token) {
-  Object.assign(customHeaders, { "jwt-token": token });
+  Object.assign(customHeaders, { token: token });
 }
 
 const axiosInstance = axios.create({
   apiUrl,
   headers: customHeaders,
+  cookies: token,
 });
 
 export const setupInterceptors = (router, store) => {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from "@/app/admin/mountains/mountains.module.css";
 import Sidebar from "@/app/components/admin/sidebar/Sidebar";
 import TableContainer from "@mui/material/TableContainer";
@@ -17,6 +17,9 @@ import Repository, { apiUrl } from "@/app/repository/Repository";
 import Alert from "@mui/material/Alert";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { isAuthenticated } from "@/app/plugins/Auth";
+import { redirect } from "next/navigation";
+import { FilePond } from "react-filepond";
 
 const style = {
   position: "absolute",
@@ -37,11 +40,18 @@ const MountainsPage = () => {
     name: "",
     description: "",
     route: "",
+    images: [],
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
   const [edit, setEdit] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useLayoutEffect(() => {
+    if (!isAuthenticated) {
+      redirect("/admin/login");
+    }
+  }, []);
 
   useEffect(() => {
     getData();
@@ -63,7 +73,6 @@ const MountainsPage = () => {
   const getData = async () => {
     await Repository.get(`${apiUrl}/mountain`)
       .then((res) => {
-        console.log(res.data.data);
         setData(res.data.data);
       })
       .catch((err) => {
@@ -82,23 +91,25 @@ const MountainsPage = () => {
   };
 
   const saveData = async (values, setSubmitting, resetForm) => {
-    const params = {
-      name: values.name,
-      description: values.description,
-      route: values.route,
-    };
-    await Repository.post(`${apiUrl}/mountain`, params)
-      .then((res) => {
-        resetForm();
-        setSubmitting(false);
-        handleClose();
-        showMessage(res.data.message, false);
-        getData();
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        showMessage(err.response.data.message, true);
-      });
+    console.log(values);
+    setSubmitting(false);
+    // const params = {
+    //   name: values.name,
+    //   description: values.description,
+    //   route: values.route,
+    // };
+    // await Repository.post(`${apiUrl}/mountain`, params)
+    //   .then((res) => {
+    //     resetForm();
+    //     setSubmitting(false);
+    //     handleClose();
+    //     showMessage(res.data.message, false);
+    //     getData();
+    //   })
+    //   .catch((err) => {
+    //     setSubmitting(false);
+    //     showMessage(err.response.data.message, true);
+    //   });
   };
 
   const updateData = async (values, setSubmitting, resetForm) => {
@@ -283,6 +294,21 @@ const MountainsPage = () => {
                         </MenuItem>
                       ))}
                     </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                    <FilePond
+                      allowMultiple={true}
+                      maxFiles={6}
+                      onprocessfiles={(e) => console.log(e)}
+                    />
+                    <input
+                      type="file"
+                      className="filepond"
+                      name="filepond"
+                      multiple
+                      data-max-file-size="300MB"
+                      data-max-files="3"
+                    />
                   </FormControl>
                   <button
                     type="submit"

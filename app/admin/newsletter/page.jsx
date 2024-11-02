@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from "@/app/admin/routes/routes.module.css";
 import Sidebar from "@/app/components/admin/sidebar/Sidebar";
 import TableContainer from "@mui/material/TableContainer";
@@ -12,21 +12,26 @@ import TableBody from "@mui/material/TableBody";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Alert from "@mui/material/Alert";
 import Repository, { apiUrl } from "@/app/repository/Repository";
+import { isAuthenticated } from "@/app/plugins/Auth";
+import { redirect } from "next/navigation";
 
 const NewsletterPage = () => {
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
 
+  useLayoutEffect(() => {
+    if (!isAuthenticated) {
+      redirect("/admin/login");
+    }
+  }, []);
+
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    await Repository.get(`${apiUrl}/newsletter`, {
-      Authorization:
-        "Bearer rG8K0GSXXluVwabOVxdGASw0snTB0yhGiet4AOzSchvKuQPW4RcCM8Uvfn7XIHY8",
-    })
+    await Repository.get(`${apiUrl}/newsletter`)
       .then((res) => {
         setData(res.data.data);
       })

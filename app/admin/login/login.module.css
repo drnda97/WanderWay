@@ -49,7 +49,7 @@
 }
 .form {
     width: 100%;
-    max-width: 700px;
+    max-width: 500px;
 }
 .form__wrapper {
     display: flex;
@@ -64,6 +64,7 @@
     width: 100%;
     padding: 12px;
     border-radius: 12px;
+    font-size: 18px;
     background-color: transparent;
     border: 1px solid #ffffff;
     color: #ffffff;

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from "@/app/admin/appointments/appointments.module.css";
 import Sidebar from "@/app/components/admin/sidebar/Sidebar";
 import TableContainer from "@mui/material/TableContainer";
@@ -8,19 +9,32 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
+import { isAuthenticated } from "@/app/plugins/Auth";
+import { redirect } from "next/navigation";
+import Repository, { apiUrl } from "@/app/repository/Repository";
 
 const AppointmentsPage = () => {
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
+  const [data, setData] = useState([]);
 
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+  useLayoutEffect(() => {
+    if (!isAuthenticated) {
+      redirect("/admin/login");
+    }
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    await Repository.get(`${apiUrl}/appointments`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <>
@@ -41,7 +55,7 @@ const AppointmentsPage = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {data.map((row) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

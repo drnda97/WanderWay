@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from "@/app/admin/district/district.module.css";
 import Sidebar from "@/app/components/admin/sidebar/Sidebar";
 import Table from "@mui/material/Table";
@@ -17,6 +17,8 @@ import Repository, { apiUrl } from "@/app/repository/Repository";
 import Alert from "@mui/material/Alert";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { isAuthenticated } from "@/app/plugins/Auth";
+import { redirect } from "next/navigation";
 
 const style = {
   position: "absolute",
@@ -37,6 +39,12 @@ const DistrictPage = () => {
   const [error, setError] = useState(false);
   const [edit, setEdit] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useLayoutEffect(() => {
+    if (!isAuthenticated) {
+      redirect("/admin/login");
+    }
+  }, []);
 
   useEffect(() => {
     getData();
