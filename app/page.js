@@ -14,16 +14,16 @@ export default function Home() {
         <div className="container mx-auto flex flex-col sm:gap-40 gap-12 px-4 sm:px-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-4 sm:gap-y-12 sm:text-left text-center sm:w-4/6">
-              <h1 className="text-slate-800 sm:text-7xl text-5xl font-bold">
+              <h1 className="text-teal-600 sm:text-7xl text-5xl font-bold">
                 Explore Nature, Discover Your Trail!
               </h1>
-              <p className="text-slate-800 font-light">
+              <p className="text-teal-600 font-light">
                 Discover the ultimate hiking experience with TrailBlaze Inc. Our
                 innovative app connects outdoor enthusiasts to nature while
                 promoting exploration, adventure, and sustainable practices for
                 unforgettable journeys.
               </p>
-              <Link href="#" className="text-slate-800">
+              <Link href="#" className="text-teal-600">
                 <button className="border-2 border-slate-800 uppercase py-4 px-12">
                   find out more
                 </button>
@@ -42,10 +42,10 @@ export default function Home() {
               className="w-fit h-full object-cover object-center"
             />
             <div className="flex flex-col sm:items-end items-center gap-4 sm:gap-y-12 sm:w-4/6 sm:justify-self-end">
-              <h2 className="text-slate-800 sm:text-6xl text-4xl font-bold sm:text-right text-center">
+              <h2 className="text-teal-600 sm:text-6xl text-4xl font-bold sm:text-right text-center">
                 About us
               </h2>
-              <p className="text-slate-800 font-light sm:text-right text-center">
+              <p className="text-teal-600 font-light sm:text-right text-center">
                 At TrailBlaze Inc., we are dedicated to enhancing the hiking
                 experience for outdoor enthusiasts through innovative
                 technology. Founded in 2023, our mission is to connect people
@@ -60,7 +60,7 @@ export default function Home() {
                 hiking journeys while preserving the beauty of the great
                 outdoors. Join us today!
               </p>
-              <Link href="#" className="text-slate-800">
+              <Link href="#" className="text-teal-600">
                 <button className="border-2 border-slate-800 uppercase py-4 px-12">
                   find out more
                 </button>
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-slate-800">
+      <div className="bg-teal-600">
         <div className="sm:w-7/12 flex flex-col gap-12 justify-center items-center sm:py-20 py-12 px-4 mx-auto">
           <h2 className="sm:text-7xl text-5xl text-white text-center font-bold">
             Our Team.
@@ -107,7 +107,7 @@ export default function Home() {
       </div>
       <div className="bg-gray-100">
         <div className="container flex flex-col gap-12 justify-center items-center sm:py-20 py-12 mx-auto px-4 sm:px-0">
-          <h2 className="sm:text-7xl text-5xl text-slate-800 text-center font-bold">
+          <h2 className="sm:text-7xl text-5xl text-teal-600 text-center font-bold">
             Why us?
           </h2>
           <img
@@ -117,10 +117,10 @@ export default function Home() {
           />
           <div className="flex sm:gap-20 gap-4 flex-col sm:flex-row">
             <div className="flex flex-col gap-4 text-center sm:text-left">
-              <h3 className="text-slate-800 text-2xl font-bold">
+              <h3 className="text-teal-600 text-2xl font-bold">
                 Innovative Technology
               </h3>
-              <p className="text-slate-800 font-light">
+              <p className="text-teal-600 font-light">
                 TrailBlaze Inc. leverages cutting-edge technology to provide a
                 user-friendly hiking app that offers detailed trail information,
                 personalized recommendations, and a focus on enhancing the
@@ -130,10 +130,10 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col gap-4 text-center sm:text-left">
-              <h3 className="text-slate-800 text-2xl font-bold">
+              <h3 className="text-teal-600 text-2xl font-bold">
                 Commitment Sustainability
               </h3>
-              <p className="text-slate-800 font-light">
+              <p className="text-teal-600 font-light">
                 The company emphasizes sustainable hiking practices and
                 environmental awareness, educating users on the importance of
                 preserving natural ecosystems while encouraging responsible
@@ -146,7 +146,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-slate-800">
+      <div className="bg-teal-600">
         <div className="sm:w-7/12 flex flex-col sm:gap-12 gap-4 justify-center items-center sm:py-20 py-12 mx-auto">
           <h2 className="sm:text-7xl text-3xl text-white text-center font-bold">
             Reach Out and Blaze Your Trail with Us!

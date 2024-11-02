@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <header className="px-4 py-2 bg-slate-800">
+    <header className="px-4 py-2 bg-teal-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
         <Link
           href="/"

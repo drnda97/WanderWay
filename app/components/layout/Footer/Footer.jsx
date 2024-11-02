@@ -11,19 +11,19 @@ import { TikTok } from "@/app/assets/icons/TikTok";
 
 const Footer = () => {
   return (
-    <footer className="w-full flex flex-col items-center justify-center pb-12 bg-slate-800">
+    <footer className="w-full flex flex-col items-center justify-center pb-12 bg-teal-600">
       <div className="w-full flex flex-col text-center justify-center gap-4 sm:gap-12 py-4 sm:py-20 bg-gray-100">
-        <h2 className="sm:text-6xl text-3xl text-slate-800 font-extrabold">
+        <h2 className="sm:text-6xl text-3xl text-teal-600 font-extrabold">
           Follow us on social.
         </h2>
         <Link
           href="#"
           target="_blank"
-          className="text-slate-800 font-bold text-2xl"
+          className="text-teal-600 font-bold text-2xl"
         >
           @instagram
         </Link>
-        <div className="flex justify-center items-center text-slate-800 gap-4">
+        <div className="flex justify-center items-center text-teal-600 gap-4">
           <Link href="#">
             <Instagram />
           </Link>

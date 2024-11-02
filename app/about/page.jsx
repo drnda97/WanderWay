@@ -15,10 +15,10 @@ const Page = () => {
               className="w-fit object-cover"
             />
             <div className="flex flex-col gap-4 sm:gap-y-12 gap-y-4 sm:w-4/6 text-center sm:text-left">
-              <h1 className="text-slate-800 sm:text-7xl text-4xl font-bold">
+              <h1 className="text-teal-600 sm:text-7xl text-4xl font-bold">
                 About us
               </h1>
-              <p className="text-slate-800 font-light">
+              <p className="text-teal-600 font-light">
                 At TrailBlaze Inc., we are a pioneering outdoor technology
                 company founded in 2023, dedicated to enhancing the hiking
                 experience for enthusiasts worldwide. Our mission is to connect
@@ -41,7 +41,7 @@ const Page = () => {
               className="h-auto object-cover object-center sm:absolute right-0 top-0 flex sm:hidden"
             />
             <div className="flex flex-col gap-4 sm:gap-y-12 sm:w-4/6 text-center sm:text-left">
-              <p className="text-slate-800 font-light sm:text-left text-center">
+              <p className="text-teal-600 font-light sm:text-left text-center">
                 At TrailBlaze Inc., we are a passionate collective of outdoor
                 enthusiasts, technology innovators, and environmental advocates
                 committed to enhancing the hiking experience for adventurers
@@ -50,7 +50,7 @@ const Page = () => {
                 for those who seek exploration and adventure in the great
                 outdoors.
               </p>
-              <p className="text-slate-800 font-light sm:text-left text-center">
+              <p className="text-teal-600 font-light sm:text-left text-center">
                 Our team comprises individuals with diverse backgrounds in app
                 development, environmental science, and outdoor recreation. This
                 unique blend of expertise drives our commitment to creating
@@ -59,7 +59,7 @@ const Page = () => {
                 pursuits, and we strive to provide solutions that elevate every
                 hiking journey.
               </p>
-              <p className="text-slate-800 font-light sm:text-left text-center">
+              <p className="text-teal-600 font-light sm:text-left text-center">
                 At the heart of our company is a cutting-edge hiking app
                 designed to cater to both casual trekkers and seasoned
                 adventurers. Our app offers detailed trail information,
@@ -68,14 +68,14 @@ const Page = () => {
                 knowledge and tools to navigate the trails with confidence and
                 respect for nature.
               </p>
-              <p className="text-slate-800 font-light sm:text-left text-center">
+              <p className="text-teal-600 font-light sm:text-left text-center">
                 We believe in the importance of preserving natural ecosystems
                 for future generations, and our app reflects this ethos by
                 encouraging users to engage with the environment mindfully. As
                 we continue to grow and evolve, we remain dedicated to our core
                 values of exploration, adventure, and environmental awareness.
               </p>
-              <p className="text-slate-800 font-light sm:text-left text-center">
+              <p className="text-teal-600 font-light sm:text-left text-center">
                 Join us at TrailBlaze Inc. as we pave the way for a new era of
                 outdoor exploration, inviting you to discover the beauty of
                 nature and embark on unforgettable hiking journeys.
