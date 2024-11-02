@@ -27,7 +27,7 @@ const Page = () => {
                 team comprises outdoor enthusiasts, technology experts, and
                 environmental advocates who share a passion for the great
                 outdoors. With a focus on sustainable practices, we strive to
-                empower users to explore responsibly while enjoying nature's
+                empower users to explore responsibly while enjoying nature s
                 beauty. Together, we are committed to seamlessly integrating
                 technology with outdoor exploration, paving the way for a new
                 era of adventure for hikers of all levels.
