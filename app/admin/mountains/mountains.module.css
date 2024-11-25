@@ -52,3 +52,7 @@
     padding: 6px;
     border-radius: 12px;
 }
+.table__image {
+    width: 45px;
+    height: 45px;
+}

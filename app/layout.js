@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import "./output.css";
 import Header from "@/app/components/layout/Header/Header";
 import Footer from "@/app/components/layout/Footer/Footer";
+import { useEffect, useState } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,6 +30,23 @@ const darkTheme = createTheme({
 });
 
 export default function RootLayout({ children }) {
+  const [showTemplate, setShowTemplate] = useState(true);
+
+  useEffect(() => {
+    if (window && window.location.pathname.includes("admin"))
+      setShowTemplate(false);
+  }, []);
+
+  if (!showTemplate) {
+    return (
+      <ThemeProvider theme={darkTheme}>
+        <html lang="en">
+          <body className={poppins.className}>{children}</body>
+        </html>
+      </ThemeProvider>
+    );
+  }
+
   return (
     <ThemeProvider theme={darkTheme}>
       <html lang="en">

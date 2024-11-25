@@ -19,7 +19,6 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { isAuthenticated } from "@/app/plugins/Auth";
 import { redirect } from "next/navigation";
-import { FilePond } from "react-filepond";
 
 const style = {
   position: "absolute",
@@ -90,47 +89,22 @@ const MountainsPage = () => {
       });
   };
 
-  const saveData = async (values, setSubmitting, resetForm) => {
-    console.log(values);
-    setSubmitting(false);
-    // const params = {
-    //   name: values.name,
-    //   description: values.description,
-    //   route: values.route,
-    // };
-    // await Repository.post(`${apiUrl}/mountain`, params)
-    //   .then((res) => {
-    //     resetForm();
-    //     setSubmitting(false);
-    //     handleClose();
-    //     showMessage(res.data.message, false);
-    //     getData();
-    //   })
-    //   .catch((err) => {
-    //     setSubmitting(false);
-    //     showMessage(err.response.data.message, true);
-    //   });
+  const saveData = async (formData) => {
+    const response = await Repository.post(`${apiUrl}/mountain`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
   };
 
-  const updateData = async (values, setSubmitting, resetForm) => {
-    const params = {
-      id: mountain._id,
-      name: values.name,
-      description: values.description,
-      route: values.route,
-    };
-    await Repository.put(`${apiUrl}/mountain`, params)
-      .then((res) => {
-        resetForm();
-        setSubmitting(false);
-        handleClose();
-        showMessage(res.data.message, false);
-        getData();
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        showMessage(err.response.data.message, true);
-      });
+  const updateData = async (formData) => {
+    const response = await axios.put("/api/mountains/:id", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
   };
 
   const deleteData = async (id) => {
@@ -182,6 +156,7 @@ const MountainsPage = () => {
                 <TableCell>Name</TableCell>
                 <TableCell>Description</TableCell>
                 <TableCell>Route Name</TableCell>
+                <TableCell>First Image</TableCell>
                 <TableCell align={"right"}>#</TableCell>
               </TableRow>
             </TableHead>
@@ -195,7 +170,22 @@ const MountainsPage = () => {
                     {row.name}
                   </TableCell>
                   <TableCell>{row.description}</TableCell>
-                  <TableCell>{row.route.name}</TableCell>
+                  <TableCell>
+                    {row.route
+                      ? row.route?.name
+                      : "No routes currently attached"}
+                  </TableCell>
+                  <TableCell>
+                    {row.images.length ? (
+                      <img
+                        src={row.images[0]}
+                        alt="Mountain"
+                        className={styles.table__image}
+                      />
+                    ) : (
+                      "No images currently attached"
+                    )}
+                  </TableCell>
                   <TableCell align={"right"}>
                     <span
                       className={styles.icon}
@@ -240,14 +230,36 @@ const MountainsPage = () => {
                 if (!values.route) {
                   errors.route = "Route is Required";
                 }
+                if (!values.images || values.images.length === 0) {
+                  errors.images = "At least one image is required.";
+                }
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
+              onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                if (!edit) {
-                  return saveData(values, setSubmitting, resetForm);
+                const formData = new FormData();
+                formData.append("name", values.name);
+                formData.append("description", values.description);
+                formData.append("route", values.route);
+
+                // Add images to the FormData
+                for (let i = 0; i < values.images.length; i++) {
+                  formData.append("images", values.images[i]);
                 }
-                updateData(values, setSubmitting, resetForm);
+
+                try {
+                  if (!edit) {
+                    await saveData(formData); // Pass formData to the API function
+                  } else {
+                    await updateData(formData);
+                  }
+                  resetForm();
+                  handleClose();
+                } catch (error) {
+                  console.error("Error submitting form:", error);
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
               {({
@@ -255,16 +267,15 @@ const MountainsPage = () => {
                 errors,
                 handleChange,
                 handleSubmit,
-                isSubmitting,
                 setFieldValue,
-                /* and other goodies */
+                isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className={styles.form__wrapper}>
                   <input
                     className={`${styles.input} ${errors.name ? styles.input__error : ""}`}
                     type="text"
                     name="name"
-                    placeholder={"Name"}
+                    placeholder="Name"
                     onChange={handleChange}
                     value={values.name}
                   />
@@ -272,7 +283,7 @@ const MountainsPage = () => {
                     className={`${styles.input} ${errors.description ? styles.input__error : ""}`}
                     type="text"
                     name="description"
-                    placeholder={"Description"}
+                    placeholder="Description"
                     onChange={handleChange}
                     value={values.description}
                   />
@@ -283,37 +294,34 @@ const MountainsPage = () => {
                       id="custom-select"
                       value={values.route}
                       className={`${styles.input} ${errors.route ? styles.input__error : ""}`}
-                      label="Age"
+                      label="Route"
                       onChange={(e) =>
                         setRouteFromSelect(setFieldValue, e.target.value)
                       }
                     >
                       {routes.map((route, index) => (
-                        <MenuItem value={route} key={index}>
+                        <MenuItem value={route._id} key={index}>
                           {route.name}
                         </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
-                    <FilePond
-                      allowMultiple={true}
-                      maxFiles={6}
-                      onprocessfiles={(e) => console.log(e)}
-                    />
                     <input
                       type="file"
-                      className="filepond"
-                      name="filepond"
+                      name="images"
                       multiple
-                      data-max-file-size="300MB"
-                      data-max-files="3"
+                      accept="image/*"
+                      onChange={(e) => setFieldValue("images", e.target.files)}
                     />
+                    {errors.images && (
+                      <Typography color="error">{errors.images}</Typography>
+                    )}
                   </FormControl>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={"green__button"}
+                    className="green__button"
                   >
                     Save
                   </button>
