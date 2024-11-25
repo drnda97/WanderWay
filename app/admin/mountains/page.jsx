@@ -72,7 +72,7 @@ const MountainsPage = () => {
   const getData = async () => {
     await Repository.get(`${apiUrl}/mountain`)
       .then((res) => {
-        setData(res.data.data);
+        setData(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -178,7 +178,7 @@ const MountainsPage = () => {
                   <TableCell>
                     {row.images.length ? (
                       <img
-                        src={row.images[0]}
+                        src={row.images}
                         alt="Mountain"
                         className={styles.table__image}
                       />
