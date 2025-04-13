@@ -25,7 +25,7 @@ const poppins = Poppins({
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
 });
 
